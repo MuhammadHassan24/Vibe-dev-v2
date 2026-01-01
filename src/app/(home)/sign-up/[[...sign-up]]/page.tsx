@@ -1,0 +1,26 @@
+"use client";
+
+import { useCurrentTheme } from "@/hooks/use-current-theme";
+import { SignUp } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+
+const Page = () => {
+  const currentTheme = useCurrentTheme();
+
+  return (
+    <div className="flex flex-col  max-w-3xl mx-auto w-full ">
+      <section className=" 2xl:pt-48 py-[16vh] ">
+        <div className="flex flex-col items-center">
+          <SignUp
+            appearance={{
+              elements: { cardBox: "border! shadow-none! rounded-lg!" },
+              baseTheme: currentTheme === "dark" ? dark : undefined,
+            }}
+          />
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Page;
