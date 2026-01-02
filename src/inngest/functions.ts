@@ -16,7 +16,7 @@ import {
 } from "./utils";
 import z from "zod";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
-import { prisma } from "@/lib/db";
+import  prisma  from "@/lib/db";
 
 interface AgentState {
   summary: string;

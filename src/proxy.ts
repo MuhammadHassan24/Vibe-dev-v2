@@ -10,7 +10,12 @@ const isPublicRoute = createRouteMatcher([
 
 export default clerkMiddleware(async (auth, req) => {
   if (!isPublicRoute(req)) {
-    await auth.protect();
+    await auth.protect((has) => {
+      return (
+        has({ permission: "org:admin:example1" }) ||
+        has({ permission: "org:admin:example2" })
+      );
+    });
   }
 });
 

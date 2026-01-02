@@ -1,4 +1,4 @@
-import { Fragment } from "@/generated/prisma";
+import { Fragment } from "@/generated/prisma/client";
 import { useState } from "react";
 import { ExternalLinkIcon, RefreshCcwIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";

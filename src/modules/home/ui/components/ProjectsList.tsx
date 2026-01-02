@@ -10,17 +10,14 @@ import Link from "next/link";
 
 export const ProjectsList = () => {
   const trpc = useTRPC();
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
   const { data: projects, isLoading } = useQuery(
     trpc.project.getMany.queryOptions()
   );
 
-  if (!user) return null;
-
-  if (projects?.length === 0) {
-    return <div></div>;
+  if (!projects || projects.length === 0) {
+    return null;
   }
-
   return (
     <div className="w-full bg-white dark:bg-sidebar rounded-xl p-8 border flex flex-col gap-y-6 sm:gap-y-4 mt-[16vh]">
       <h2 className="text-2xl font-semibold ">{user?.firstName} Vibes</h2>
@@ -46,7 +43,7 @@ export const ProjectsList = () => {
                 <div className="flex flex-col overflow-hidden">
                   <h3 className="truncate font-medium">{project.name}</h3>
                   <p className="text-sm text-muted-foreground truncate">
-                    {formatDistanceToNow(project.UpdatedAt, {
+                    {formatDistanceToNow(new Date(project.updatedAt), {
                       addSuffix: true,
                     })}
                   </p>

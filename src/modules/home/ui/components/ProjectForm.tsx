@@ -7,13 +7,13 @@ import { useState } from "react";
 import { z } from "zod";
 import { ArrowUpIcon, Loader2Icon } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { cn } from "@/lib/utils";
 import { useTRPC } from "@/trpc/client";
 import { Button } from "@/components/ui/button";
 import { Form, FormField } from "@/components/ui/form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { PROJECT_TEMPLATES } from "../../constants";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
   value: z
@@ -42,12 +42,16 @@ export const ProjectForm = () => {
       },
 
       onError: (error) => {
+        // Add detailed logging
+        console.log("Full error:", error);
+        console.log("Error data:", error.data);
+        console.log("Error message:", error.message);
+
         toast.error(error.message);
 
         if (error.data?.code === "UNAUTHORIZED") {
           router.push("/sign-in");
         }
-        // Redirect to pricing on specific error
         if (error.data?.code === "TOO_MANY_REQUESTS") {
           router.push("/pricing");
         }

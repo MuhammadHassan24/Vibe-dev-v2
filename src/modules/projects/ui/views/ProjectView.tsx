@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/resizable";
 import { MessagesContainer } from "../components/MessagesContainer";
 import { Suspense, useState } from "react";
-import { Fragment } from "@/generated/prisma";
+import { Fragment } from "@/generated/prisma/client";
 import { ProjectHeader } from "../components/ProjectHeader";
 import { FragmentWeb } from "../components/FragmentWeb";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

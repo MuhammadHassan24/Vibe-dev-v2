@@ -1,6 +1,6 @@
 import { consumeCredits } from "@/lib/usage";
 import { inngest } from "@/inngest/client";
-import { prisma } from "@/lib/db";
+import  prisma  from "@/lib/db";
 import { protectedProcedure, createTRPCRouter } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
 import z from "zod";
@@ -24,7 +24,7 @@ export const messagesRouter = createTRPCRouter({
           fragment: true,
         },
         orderBy: {
-          UpdatedAt: "asc",
+          updatedAt: "asc",
         },
       });
       return messages;

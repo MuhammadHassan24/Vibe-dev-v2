@@ -1,5 +1,5 @@
 import { inngest } from "@/inngest/client";
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import { consumeCredits } from "@/lib/usage";
 import { protectedProcedure, createTRPCRouter } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
@@ -13,7 +13,7 @@ export const projectsRouter = createTRPCRouter({
         userId: ctx.auth.userId,
       },
       orderBy: {
-        UpdatedAt: "desc",
+        updatedAt: "desc",
       },
     });
     return projects;
